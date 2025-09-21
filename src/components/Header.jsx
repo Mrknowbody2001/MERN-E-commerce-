@@ -28,7 +28,9 @@ const Header = () => {
         {/* Icons */}
         <div className="hidden md:flex items-center gap-4">
           <FiSearch className="cursor-pointer text-xl" />
+          <Link to="/signup">
           <FiUser className="cursor-pointer text-xl" />
+            </Link>
           <div className="relative cursor-pointer">
             <FiShoppingCart className="text-xl" />
             <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">

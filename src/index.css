@@ -68,3 +68,8 @@ button:focus-visible {
 } */
 
 @import "tailwindcss";
+
+body {
+  background-color: rgb(227, 235, 243);
+}
+ 
