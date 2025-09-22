@@ -7,6 +7,8 @@ import Signup from "./pages/Signup";
 import Shop from "./pages/Shop";
 import Header from "./components/Header";
 import ProductDetails from "./pages/Productdetails";
+import CheckoutPage from "./pages/CheckoutPage";
+import VerifyOrderPage from "./pages/VeryfyOrderPage";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/CheckoutPage" element={<CheckoutPage />} />
+        <Route path="/verify-order" element={<VerifyOrderPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -132,7 +132,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
             className="w-full bg-black text-white py-2 rounded"
             onClick={() => {
               onClose();
-              navigate("/checkout");
+              navigate("/checkoutPage");
             }}
           >
             Go to Checkout
