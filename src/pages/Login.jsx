@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../store/AuthSlice";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,10 +23,12 @@ const Login = () => {
         "http://localhost:5000/api/users/login",
         formData
       );
-      setMessage(res.data.message || "Signup successful! Redirecting...");
-      setFormData({ email: "", password: "" });
 
-      setTimeout(() => navigate("/login"), 1000); // redirect after 1 sec
+      // ✅ Save token in Redux + localStorage
+      dispatch(loginSuccess(res.data.token));
+
+      // Redirect to shop page
+      navigate("/shop");
     } catch (err) {
       setMessage(err.response?.data?.message || "Something went wrong");
     }
@@ -36,7 +38,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="w-full max-w-md p-6 bg-gray-100 rounded-2xl shadow-md">
         <h1 className="text-3xl font-bold text-black mb-6 text-center">
-          Create Account
+          Login
         </h1>
 
         {message && (
@@ -69,12 +71,12 @@ const Login = () => {
         </form>
 
         <p className="text-center text-sm text-gray-600 mt-4">
-          Already have an account?{" "}
+          Don’t have an account?{" "}
           <a
             href="/signup"
             className="text-black font-semibold hover:underline"
           >
-            Signup
+            Sign Up
           </a>
         </p>
       </div>

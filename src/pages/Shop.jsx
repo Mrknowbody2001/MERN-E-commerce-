@@ -89,7 +89,7 @@ const Shop = () => {
 
         {/* Category Filter */}
         <h3 className="font-semibold mt-4 mb-2">Product Category</h3>
-        {["Men", "Women", "Kids"].map((cat) => (
+        {["Men", "Women","Unisex", "Kids"].map((cat) => (
           <label key={cat} className="block">
             <input
               type="radio"
