@@ -6,18 +6,27 @@ import CartDrawer from "./CartDrawrer";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch, FiUser, FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../store/AuthSlice";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const { cartCount } = useContext(CartContext);
 
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <header className="shadow-md">
       <div className="container mx-auto flex justify-between items-center px-4 py-4">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold tracking-widest">
-          CACTI
+          AEONTRIX
         </Link>
 
         {/* Desktop Menu */}
@@ -33,10 +42,15 @@ const Header = () => {
         {/* Icons */}
         <div className="hidden md:flex items-center gap-4">
           <FiSearch className="cursor-pointer text-xl" />
-          <Link to="/signup">
-            <FiUser className="cursor-pointer text-xl" />
-          </Link>
-
+          {isAuthenticated ? (
+            <button onClick={handleLogout} className="text-md">
+              Logout
+            </button>
+          ) : (
+            <Link to="/signup">
+              <FiUser className="cursor-pointer text-xl" />
+            </Link>
+          )}
           {/* Cart Icon */}
           <div
             className="relative cursor-pointer"
@@ -70,7 +84,15 @@ const Header = () => {
             </Link>
             <div className="flex gap-4 mt-4">
               <FiSearch className="text-xl" />
-              <FiUser className="text-xl" />
+              {isAuthenticated ? (
+                <button onClick={handleLogout} className="text-md">
+                  Logout
+                </button>
+              ) : (
+                <Link to="/signup">
+                  <FiUser className="cursor-pointer text-xl" />
+                </Link>
+              )}
               <FiShoppingCart
                 className="text-xl"
                 onClick={() => setCartOpen(true)}
