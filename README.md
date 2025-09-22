@@ -37,8 +37,8 @@ frontend/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/aeontrix.git
-   cd aeontrix/frontend
+   git clone https://github.com/Mrknowbody2001/MERN-E-commerce-.git
+
    ```
 
 2. **Install dependencies**
